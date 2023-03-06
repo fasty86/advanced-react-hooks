@@ -19,7 +19,7 @@ function asyncReducer(state, action) {
     }
     case 'resolved': {
       // 🐨 replace "pokemon" with "data" (in the action too!)
-      return {status: 'resolved', data: action.pokemon, error: null}
+      return {status: 'resolved', data: action.data, error: null}
     }
     case 'rejected': {
       // 🐨 replace "pokemon" with "data"
@@ -53,6 +53,7 @@ function useAsync(asyncCallback, initialState, dependencies) {
     // 🐨 because of limitations with ESLint, you'll need to ignore
     // the react-hooks/exhaustive-deps rule. We'll fix this in an extra credit.
   }, dependencies)
+  return state
 }
 
 function PokemonInfo({pokemonName}) {
@@ -71,7 +72,7 @@ function PokemonInfo({pokemonName}) {
     [pokemonName],
   )
   // 🐨 this will change from "pokemon" to "data"
-  const {pokemon, status, error} = state
+  const {data: pokemon, status, error} = state
 
   switch (status) {
     case 'idle':
